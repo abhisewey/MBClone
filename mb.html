@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>muscleblazeofficial</title>  
+  <title>muscleblazeofficialsite</title>  
   <link rel="stylesheet" href="mb.css">       
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -35,7 +35,9 @@
     <i class="fa-solid fa-wallet fa-xl icon-btn"></i>
     
     <div class="cart-wrapper">
+      <a href="cart.html">
       <i class="fa-solid fa-bag-shopping fa-xl icon-btn"></i>
+      </a>
       <span class="cart-count">0</span>
     </div>
     
@@ -121,7 +123,7 @@
         ₹3,149 <span class="original-price">₹4,048</span> <span class="save">Save ₹899</span>
       </div>
       <div class="premium-price">₹3,055 with <span class="premium">Premium</span></div>
-      <button class="btn-cart">ADD TO CART</button>
+      <button class="btn-cart" onclick="">ADD TO CART</button>
   <button class="btn-buy">BUY NOW</button>
     </div>
 
@@ -175,7 +177,7 @@
 </section>
 
 <!-- frequently bought -->
- <section class="popular-section prosize">
+ <section class="popular-section">
   <h2 class="section-title"><span class="highlight-bar"></span>Frequently Bought Together</h2>
   <div class="product-cards">
   <div class="product-card">
@@ -216,17 +218,54 @@
 
 <div class="product-card">
   <div class="discount-badge">38%<br>OFF</div>
-<img data-original="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" class="offscreenimage lazy" width="" src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" alt="MuscleBlaze High Protein Oats,  1 kg  Dark Chocolate " itemprop="" fetchpriority="auto">  
-<h3 class="twoline">MuscleBlaze High Protein Muesli & Chocolate Peanut Butter 1KG Combo </h3>
-<div class="price">
-    ₹1,049 <span class="original-price">₹1,248</span> <span class="save">Save ₹199</span>
-</div>  
-  <button class="btn-cart">ADD TO CART</button>
-  <button class="btn-buy">BUY NOW</button>
+    <img data-original="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" class="offscreenimage lazy" width="" src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" alt="MuscleBlaze High Protein Oats,  1 kg  Dark Chocolate " itemprop="" fetchpriority="auto">  
+    <h3 class="twoline">MuscleBlaze High Protein Muesli & Chocolate Peanut Butter 1KG Combo </h3>
+    <div class="price">
+        ₹1,049 <span class="original-price">₹1,248</span> <span class="save">Save ₹199</span>
+    </div>  
+    <button class="btn-cart">ADD TO CART</button>
+    <button class="btn-buy">BUY NOW</button>
+  </div>
 </div>
 
+<!-- add to cart logic js section -->
+<!-- Example product -->
 
-</div>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.querySelectorAll(".product-card .btn-cart").forEach(button => {
+    button.addEventListener("click", () => {
+        
+        let productCard = button.closest(".product-card");
+        let name = productCard.querySelector("h3").innerText.trim();
+        let fullname = productCard.querySelector("p").innerText.trim();
+        let priceText = productCard.querySelector(".price").childNodes[0].textContent.trim();
+        let price = parseFloat(priceText.replace(/[₹,]/g, ""));
+        let img = productCard.querySelector("img").src;
+
+        let existingProduct = cart.find(item => item.name === name);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+            existingProduct.totalPrice = existingProduct.price * existingProduct.quantity;
+        } else {
+            cart.push({
+                name: name,
+                price: price,
+                quantity: 1,
+                totalPrice: price,
+                image: img
+            });
+        }
+
+        
+        localStorage.setItem("productcart", JSON.stringify(cart));
+
+        alert(name + " " + fullname + " has been added to your cart!");
+    });
+});
+</script>
+
 
 
 
