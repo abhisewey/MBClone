@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>muscleblazeofficialsite</title>
+    <link rel="stylesheet" href="mb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bitcount+Grid+Double:wght@100..900&family=Honk&family=Neucha&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    <style>
+        .cart-page {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.cart-items {
+  flex: 2;
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.cart-item {
+  display: flex;
+  gap: 15px;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 100px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.cart-item h4 {
+  margin: 0 0 5px 0;
+}
+
+.cart-item p {
+  margin: 0 0 5px 0;
+}
+
+.quantity-selector {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.quantity-selector button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 18px;
+}
+
+.freebie {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffe4c4;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.freebie img {
+  width: 70px;
+}
+
+.order-summary {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  height: fit-content;
+  background: #fff;
+}
+
+.summary-top h3 {
+  margin: 0 0 10px 0;
+}
+
+.summary-details {
+  margin-top: 15px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.summary-row.total {
+  font-weight: bold;
+  border-top: 1px dashed #ccc;
+  padding-top: 10px;
+} 
+
+.checkout-btn {
+  width: 100%;
+  background: #ffcc00;
+  border: none;
+  padding: 10px 0;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.coupon-section {
+  margin-top: 15px;
+}
+
+.coupon-input {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.coupon-input input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.coupon-input button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.summary-row.discount {
+    color: green;
+    font-weight: bold;
+    
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+  width: 120px; 
+  height: auto;
+}
+
+.cart-item div {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  margin-top: 10px;
+}
+
+.quantity-selector button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quantity-selector span {
+  width: 50px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.delete-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 20px;
+  color: #ff3b30;
+}
+.h1cart {
+    font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 100,
+    "SHLN" 100.3;
+    font-size: 60px;
+    margin-left: 550px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- heading section -->
+    <div class="topview">
+    <h1 class="h1cart">CART ITEMS</h1>
+    </div>
+ 
+  
+  
+
+<!-- downsectionwherechangesoccur -->
+
+    <div class="cart-page">
+  <div class="cart-items" id="cart-items">
+    <!-- JS will populate this -->
+  </div>
+
+  <div class="order-summary" id="order-summary">
+    <div class="summary-top">
+      <h3>Order Summary</h3>
+      <p><span id="item-count">0</span> Items</p>
+    </div>
+
+    <div class="summary-details">
+      <div class="summary-row">
+        <span>Price</span>
+        <span>₹<span id="total-amount">0</span></span>
+      </div>
+      <div class="summary-row discount" id="discountRow" style="display: none;">
+        <span>Discount</span>
+        <span>-₹1000</span>
+      </div>
+      <div class="summary-row total" id="totalsummary" style="display:none;">
+        <span>Total Amount</span>
+        <span id="final-amount">₹0</span>
+      </div>
+      <button id="checkout-btn" class="checkout-btn">CHECKOUT</button>
+    </div>
+
+    <div class="coupon-section">
+      <p>Apply Coupon</p>
+      <div class="coupon-input">
+        <input type="text" id="couponInput" placeholder="Enter Coupon/Gift Code">
+        <button id="apply-coupon">APPLY</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const cart = JSON.parse(localStorage.getItem("productcart")) || [];
+    const cartItemsDiv = document.getElementById("cart-items");
+    const itemCountSpan = document.getElementById("item-count");
+    const totalAmountSpan = document.getElementById("total-amount");  
+
+    function renderCart() {
+        cartItemsDiv.innerHTML = "";
+        let totalAmount = 0;
+        let totalItems = 0;
+
+    if (cart.length === 0) {
+        window.location.href = "cart.html";
+    }
+
+        cart.forEach((item, index) => {
+        totalAmount += item.totalPrice;
+        totalItems += item.quantity;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div>
+            <h4>${item.name} ${item.fullName}</h4>
+            <p>₹${item.price}</p>
+            <div class="quantity-selector">
+                <button class="minus">-</button>
+                <span>${item.quantity}</span>
+                <button class="plus">+</button>
+            </div>
+            </div>
+            <button class="delete-btn">🗑️</button>
+        `;
+        
+    // Quantity increase
+      div.querySelector(".plus").addEventListener("click", () => {
+        item.quantity += 1;
+        item.totalPrice = item.price * item.quantity;
+        localStorage.setItem("productcart", JSON.stringify(cart));
+        renderCart();
+      });
+
+      // Quantity decrease
+      div.querySelector(".minus").addEventListener("click", () => {
+        if(item.quantity > 1) {
+          item.quantity -= 1;
+          item.totalPrice = item.price * item.quantity;
+          
+          localStorage.setItem("productcart", JSON.stringify(cart));
+          renderCart();
+          
+        }
+      });
+
+      // Delete item
+      div.querySelector(".delete-btn").addEventListener("click", () => {
+        cart.splice(index, 1);
+        localStorage.setItem("productcart", JSON.stringify(cart));
+        renderCart();
+
+    });
+
+      cartItemsDiv.appendChild(div);
+    });
+
+    itemCountSpan.textContent = totalItems;
+    totalAmountSpan.textContent = totalAmount;
+
+  }
+
+  renderCart();
+});
+
+// couponcodefordiscount
+
+const applyBtn = document.getElementById("apply-coupon");
+const discountRow = document.getElementById("discountRow");
+const totalsummary = document.getElementById("totalsummary");
+const totalAmountSpan = document.getElementById("total-amount"); 
+
+applyBtn.addEventListener("click", () => {
+  const code = document.getElementById("couponInput").value.trim().toLowerCase(); 
+  const finalAmountSpan = document.getElementById("final-amount");
+
+  if (code === "sreemb10") {
+    discountRow.style.display = "flex"; 
+    totalsummary.style.display = "flex";
+
+    const totalAmountValue = parseInt(totalAmountSpan.textContent, 10);
+    const discountValue = totalAmountValue - 1000;
+
+    finalAmountSpan.textContent = "₹" + discountValue; 
+
+  } else {
+    discountRow.style.display = "none";  
+    totalsummary.style.display = "none";  
+    alert("Invalid coupon code");
+  }
+});
+
+
+
+</script>   
+
+
+</body>
+</html>

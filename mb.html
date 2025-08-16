@@ -35,7 +35,7 @@
     <i class="fa-solid fa-wallet fa-xl icon-btn"></i>
     
     <div class="cart-wrapper">
-      <a href="cart.html">
+      <a href="cartfill.html">
       <i class="fa-solid fa-bag-shopping fa-xl icon-btn"></i>
       </a>
       <span class="cart-count">0</span>
@@ -141,7 +141,9 @@
 
     <div class="product-card">
   <div class="discount-badge">12%<br>OFF</div>
-<img data-original="https://img6.hkrtcdn.com/34992/prd_3499165-MuscleBlaze-Liquid-LCarnitine-450-ml-Tangy-Orange_c_m.jpg" class="offscreenimage lazy" width="" src="https://img6.hkrtcdn.com/34992/prd_3499165-MuscleBlaze-Liquid-LCarnitine-450-ml-Tangy-Orange_c_m.jpg" alt="MuscleBlaze Liquid L-Carnitine 1100mg,  450 ml  Tangy Orange " itemprop="" fetchpriority="auto">  <p><strong>450 ml Tangy Orange</strong></p>
+<img data-original="https://img6.hkrtcdn.com/34992/prd_3499165-MuscleBlaze-Liquid-LCarnitine-450-ml-Tangy-Orange_c_m.jpg" class="offscreenimage lazy" width="" src="https://img6.hkrtcdn.com/34992/prd_3499165-MuscleBlaze-Liquid-LCarnitine-450-ml-Tangy-Orange_c_m.jpg" alt="MuscleBlaze Liquid L-Carnitine 1100mg,  450 ml  Tangy Orange " itemprop="" fetchpriority="auto">  
+      <h3>MuscleBlaze Liquid L-Carnitine</h3>
+<p><strong>450 ml Tangy Orange</strong></p>
   <div class="price">
     ₹699 <span class="original-price">₹799</span> <span class="save">Save ₹100</span>
   </div>
@@ -236,7 +238,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 document.querySelectorAll(".product-card .btn-cart").forEach(button => {
     button.addEventListener("click", () => {
-        
+
         let productCard = button.closest(".product-card");
         let name = productCard.querySelector("h3").innerText.trim();
         let fullname = productCard.querySelector("p").innerText.trim();
@@ -248,13 +250,18 @@ document.querySelectorAll(".product-card .btn-cart").forEach(button => {
         if (existingProduct) {
             existingProduct.quantity += 1;
             existingProduct.totalPrice = existingProduct.price * existingProduct.quantity;
+            existingProduct.fullName = fullname;
+            
+            
+            
         } else {
             cart.push({
                 name: name,
                 price: price,
                 quantity: 1,
                 totalPrice: price,
-                image: img
+                image: img,
+                fullName: fullname
             });
         }
 
@@ -264,6 +271,14 @@ document.querySelectorAll(".product-card .btn-cart").forEach(button => {
         alert(name + " " + fullname + " has been added to your cart!");
     });
 });
+
+function updateCartCount() {
+    const cartCount = document.querySelector(".cart-count");
+    let cart = JSON.parse(localStorage.getItem("productcart")) || [];
+    let totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalQty;
+}
+document.addEventListener("DOMContentLoaded", updateCartCount);
 </script>
 
 
