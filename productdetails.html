@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .product-container { display: flex; gap: 30px; }
+    .product-images { flex: 1; }
+    .product-images img { width: 100%; max-width: 400px; border: 1px solid #ddd; border-radius: 8px; }
+    .thumbnails { display: flex; gap: 10px; margin-top: 10px; }
+    .thumbnails img { width: 60px; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; }
+    .product-details { flex: 2; }
+    .product-details h2 { margin: 0 0 10px; }
+    .price { font-size: 24px; color: #e63946; margin: 10px 0; }
+    .original-price { text-decoration: line-through; color: gray; margin-left: 10px; }
+    .options { margin: 20px 0; }
+    .options button { margin: 5px; padding: 10px 15px; border: 1px solid #aaa; background: #fff; cursor: pointer; border-radius: 5px; }
+    .options button.active { background: gold; border-color: orange; }
+    .buttons { margin-top: 20px; }
+    .buttons button { padding: 12px 20px; margin-right: 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    .btn-cart { background: #ff9800; color: white; }
+    .btn-buy { background: #e63946; color: white; }
+  </style>
+</head>
+<body>
+
+  <div class="product-container">
+    <!-- LEFT: Product Images -->
+    <div class="product-images">
+      <img id="mainImage" src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" alt="Main Product Image">
+      <div class="thumbnails">
+        <img src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" onclick="changeImage(this)">
+        <img src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" onclick="changeImage(this)">
+        <img src="https://img8.hkrtcdn.com/39672/prd_3967117-MuscleBlaze-High-Protein-Oats-1-kg-Dark-Chocolate_c_m.jpg" onclick="changeImage(this)">
+      </div>
+    </div>
+
+    <!-- RIGHT: Product Details -->
+    <div class="product-details">
+      <h2>MuscleBlaze High Protein Muesli & Chocolate Peanut Butter 1KG Combo</h2>
+      <div class="price">
+        ₹1,049  
+      </div>
+
+      <!-- Flavour Options -->
+      <div class="options">
+        <h4>Flavour:</h4>
+        <button class="active">Dark Chocolate</button>
+        <button>Strawberry Delight</button>
+        <button>Cookies & Cream</button>
+      </div>
+
+      <!-- Weight Options -->
+      <div class="options">
+        <h4>Weight:</h4>
+        <button>1 kg</button>
+        <button class="active">2 kg</button>
+        <button>4 kg</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="buttons">
+        <button class="btn-cart">ADD TO CART</button>
+        <button class="btn-buy">BUY NOW</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function changeImage(thumbnail) {
+    document.getElementById("mainImage").src = thumbnail.src;
+  }
+
+  // Load product from localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const product = JSON.parse(localStorage.getItem('images')); // fetch from "images"
+    if(product) {
+      document.querySelector(".product-details h2").innerText = product.name;
+      document.getElementById("mainImage").src = product.img;
+      document.querySelector(".price").innerText = product.price;
+    }
+  });
+
+  // Button click actions
+  document.querySelector(".btn-cart").addEventListener("click", function() {
+    alert("✅ Added to Cart!");
+  });
+
+  document.querySelector(".btn-buy").addEventListener("click", function() {
+    alert("🛒 Redirecting to Checkout...");
+  });
+  </script>
+
+</body>
+</html>
